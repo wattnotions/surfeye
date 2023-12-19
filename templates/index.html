@@ -1,16 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Latest Videos</title>
+    <title>Surf Cam</title>
+    <style>
+        .video-entry {
+            margin-bottom: 40px; /* This ensures a larger gap between the video entries */
+        }
+        video {
+            display: block;
+            width: 320px;
+            height: 240px;
+            margin-bottom: 10px; /* Adds space below the video */
+        }
+        .timestamp {
+            margin-bottom: 5px; /* Adds a small gap between the timestamp and the video */
+        }
+    </style>
 </head>
 <body>
     <h1>Latest Videos</h1>
     {% for video in videos %}
-       <video width="320" height="240" controls>
-		  <source src="{{ url_for('static', filename='videos/' + video) }}" type="video/mp4">
-		  Your browser does not support the video tag.
-		</video>
-
+        <div class="video-entry">
+            <div class="timestamp">
+                Recorded: {{ video_timestamps[loop.index0] }}
+            </div>
+            <video controls>
+                <source src="{{ url_for('static', filename='videos/' + video) }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
     {% endfor %}
 </body>
 </html>
